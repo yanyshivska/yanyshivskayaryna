@@ -78,12 +78,11 @@ public class myCons {
 			  switch (parts[0]) {
 			
 			 
-	            case "ping": ping(socket); 
-	            	//System.out.printf("Your command is ping%n");
+	            case "ping":  System.out.printf("Your command is ping%n");
 	                     break;
 	            
-	            case "echo": echo(socket, String.join(" ", partsout(parts,1)));          	
-	            	    	//System.out.printf("Your command is 'echo' with the parameter %s%n",String.join(" ", partsout(parts,1)));
+	            case "echo":           	
+	            	    	System.out.printf("Your command is 'echo' with the parameter %s%n",String.join(" ", partsout(parts,1)));
 	                     break;
 	            case "login": System.out.printf("Your command is 'login' with the parameters: name=%s, password=%s%n", parts[1], parts[2]);
 	                     break;

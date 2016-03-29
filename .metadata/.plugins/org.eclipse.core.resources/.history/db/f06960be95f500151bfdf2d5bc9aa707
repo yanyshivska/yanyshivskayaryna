@@ -21,7 +21,7 @@ import java.util.TimerTask;
 
 public class myCons {
 	public static Socket socketnewMessage;
-	
+
 	static String[] partsout(String[] array, int index) {
 		String[] result = new String[array.length - index];
 		for (int i = index; i < (array.length); i++) {
@@ -45,7 +45,8 @@ public class myCons {
 		return is.readObject();
 	}
 
-		static void ping(Socket socket) throws IOException {
+	@SuppressWarnings("null")
+	static void ping(Socket socket) throws IOException {
 		DataInputStream dis = new DataInputStream(socket.getInputStream());
 		DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
 		dos.writeInt(1);
@@ -74,25 +75,29 @@ public class myCons {
 			System.out.println("Error " + nbm[0]);
 	}
 
-	private static boolean login(Socket socket, String name, String password) throws IOException, ClassNotFoundException 
-	{
+	private static boolean login(Socket socket, String name, String password)
+			throws IOException, ClassNotFoundException {
 		DataInputStream dis = new DataInputStream(socket.getInputStream());
 		DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
-		byte[] bytes = serialize(new String[]{name, password});
-		dos.writeInt(bytes.length+1);
+		byte[] bytes = serialize(new String[] { name, password });
+		dos.writeInt(bytes.length + 1);
 		dos.writeByte(5);
 		dos.write(bytes);
-		byte[] nbm = new byte[dis.readInt()]; 
+		byte[] nbm = new byte[dis.readInt()];
 		dis.readFully(nbm);
-		 if(nbm.length == 1 && (nbm[0]==6 || nbm[0]==7)) {
-			 System.out.println(nbm[0] == 6 ? "new user, registration ok" : "login ok");
-			 }
-		else 
-			System.out.println("Error "+(nbm.length == 1 ? nbm[0] : Arrays.toString(nbm)));
-		return(true); 
+		if (nbm.length == 1 && (nbm[0] == 6 || nbm[0] == 7)) {
+			System.out.println(nbm[0] == 6 ? "new user, registration ok" : "login ok");
+		} else
+			System.out.println("Error " + (nbm.length == 1 ? nbm[0] : Arrays.toString(nbm)));
+		return (true);
 	}
 
-			static void list(Socket socket) throws IOException, ClassNotFoundException {
+	private static byte[] serialize(String[] strings) {
+
+		return null;
+	}
+
+	static void list(Socket socket) throws IOException, ClassNotFoundException {
 		DataInputStream dis = new DataInputStream(socket.getInputStream());
 		DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
 		dos.writeInt(1);
@@ -183,7 +188,7 @@ public class myCons {
 				e.printStackTrace();
 			}
 		}
-	}
+
 		public static void main(String[] args) throws ClassNotFoundException {
 			try {
 				Socket socket = new Socket("lv.rst.uk.to", 151);
@@ -204,7 +209,6 @@ public class myCons {
 				boolean isTimerStarted=false;
 				boolean isClosed = false;
 				while (!isClosed) {
-					 s = br.readLine ();
 					parts = s.split(" ");
 					
 
@@ -221,7 +225,8 @@ public class myCons {
 						// parameter %s%n",String.join(" ", partsout(parts,1)));
 						break;
 					case "login":
-						if (login(socket, parts[1], parts[2]) && login(socketnewMessage, parts[1], parts[2])&& !isTimerStarted);
+						if (login(socket, parts[1], parts[2]) && login(socketnewMessage, parts[1], parts[2])
+								&& !isTimerStarted)
 								isTimerStarted = true;
 						timeToReceiveMsg.schedule(new MyTimerTask(), 0, 1000);
 						break;
@@ -254,4 +259,4 @@ public class myCons {
 			}
 		}
 	}
-
+}

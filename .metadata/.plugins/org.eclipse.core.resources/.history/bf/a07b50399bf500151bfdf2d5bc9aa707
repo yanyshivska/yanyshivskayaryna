@@ -184,7 +184,6 @@ public class myCons {
 			}
 		}
 	}
-	@SuppressWarnings("null")
 		public static void main(String[] args) throws ClassNotFoundException {
 			try {
 				Socket socket = new Socket("lv.rst.uk.to", 151);

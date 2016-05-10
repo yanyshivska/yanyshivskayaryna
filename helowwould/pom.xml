@@ -4,4 +4,21 @@
   <artifactId>helowwould</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 <build>   <plugins>    <!-- specify the java version for code compiler plugin -->    <plugin>     <groupId>org.apache.maven.plugins</groupId>     <artifactId>maven-compiler-plugin</artifactId>     <version>2.1</version>     <configuration>      <source>1.8</source>      <target>1.8</target>     </configuration>    </plugin>   </plugins>  </build>
+<dependencies>
+<dependency>
+<groupId>org.glassfish.jersey.core</groupId>
+<artifactId>jersey-client</artifactId>
+<version>2.22.2</version>
+</dependency>
+<dependency>
+<groupId>org.glassfish.jersey.media</groupId>
+<artifactId>jersey-media-moxy</artifactId>
+<version>2.22.2</version>
+</dependency>
+<dependency>
+<groupId>com.sun.jersey</groupId>
+<artifactId>jersey-json</artifactId>
+<version>1.19.1</version>
+</dependency>
+</dependencies>
 </project>
